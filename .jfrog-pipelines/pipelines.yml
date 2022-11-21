@@ -2,7 +2,7 @@ template: true
 valuesFilePath: ./values.yml
 
 resources:
-  {{ range $i, $e := until 500 }}
+  {{ range $i, $e := until 1000 }}
   - name: monitor_cron_trigger_a{{$i}}
     type: CronTrigger
     configuration:
@@ -22,7 +22,7 @@ pipelines:
         execution:
           onExecute:
             - echo hi
-      {{ range $i, $e := until 500 }}
+      {{ range $i, $e := until 1000 }}
       - name: basic_a{{$i}}
         type: Bash
         configuration:
