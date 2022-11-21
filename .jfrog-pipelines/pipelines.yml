@@ -3,7 +3,7 @@ valuesFilePath: ./values.yml
 
 resources:
   {{ range $i, $e := until 500 }}
-  - name: monitor_cron_trigger{{$i}}
+  - name: monitor_cron_trigger_a{{$i}}
     type: CronTrigger
     configuration:
       interval: '*/5 * * * *' # Every 5 minutes
@@ -15,13 +15,13 @@ pipelines:
   - name: testcron
     steps:
       {{ range $i, $e := until 500 }}
-      - name: basic{{$i}}
+      - name: basic_a{{$i}}
         type: Bash
         configuration:
           runtime:
             type: host
           inputResources:
-            - name: monitor_cron_trigger{{$i}}
+            - name: monitor_cron_trigger_a{{$i}}
         execution:
           onExecute:
             - echo hi
