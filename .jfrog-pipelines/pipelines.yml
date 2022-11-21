@@ -8,7 +8,7 @@ resources:
     configuration:
       interval: '*/5 * * * *' # Every 5 minutes
       branches:
-        include: main
+        include: test
   {{ end }}
 
 pipelines:
