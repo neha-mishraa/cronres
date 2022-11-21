@@ -8,20 +8,20 @@ resources:
     configuration:
       interval: '*/5 * * * *' # Every 5 minutes
       branches:
-        include: test
+        include: main
   {{ end }}
 
 pipelines:
   - name: testcron
     steps:
-       - name: basic_first_a
-         type: Bash
-         configuration:
-           runtime:
-             type: host
-         execution:
-           onExecute:
-             - echo hi
+      - name: basic_first_a
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+        execution:
+          onExecute:
+            - echo hi
       {{ range $i, $e := until 500 }}
       - name: basic_a{{$i}}
         type: Bash
