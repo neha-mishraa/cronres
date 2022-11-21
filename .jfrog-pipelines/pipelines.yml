@@ -1,0 +1,28 @@
+template: true
+valuesFilePath: ./values.yml
+
+resources:
+  {{ range $i, $e := until 500 }}
+  - name: monitor_cron_trigger{{$i}}
+    type: CronTrigger
+    configuration:
+      interval: '*/5 * * * *' # Every 5 minutes
+      branches:
+        include: main
+  {{ end }}
+
+pipelines:
+  - name: testcron
+    steps:
+      {{ range $i, $e := until 500 }}
+      - name: basic{{$i}}
+        type: Bash
+        configuration:
+          runtime:
+            type: host
+          inputResources:
+            - name: monitor_cron_trigger{{$i}}
+        execution:
+          onExecute:
+            - echo hi
+      {{ end }}
