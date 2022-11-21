@@ -14,14 +14,14 @@ resources:
 pipelines:
   - name: testcron
     steps:
-       - name: basic_first
-        type: Bash
-        configuration:
-          runtime:
-            type: host
-        execution:
-          onExecute:
-            - echo hi
+       - name: basic_first_a
+         type: Bash
+         configuration:
+           runtime:
+             type: host
+         execution:
+           onExecute:
+              - echo hi
       {{ range $i, $e := until 500 }}
       - name: basic_a{{$i}}
         type: Bash
@@ -31,7 +31,7 @@ pipelines:
           inputResources:
             - name: monitor_cron_trigger_a{{$i}}
           inputSteps:
-            - name: basic_first
+            - name: basic_first_a
         execution:
           onExecute:
             - echo hi
