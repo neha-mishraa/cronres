@@ -21,7 +21,7 @@ pipelines:
              type: host
          execution:
            onExecute:
-              - echo hi
+             - echo hi
       {{ range $i, $e := until 500 }}
       - name: basic_a{{$i}}
         type: Bash
